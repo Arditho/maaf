@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pesan Untuk Ai</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:#ffe6eb;
+font-family:Arial, sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:90%;
+max-width:380px;
+text-align:center;
+z-index:2;
+}
+
+h2{
+margin-top:0;
+}
+
+#text{
+font-size:16px;
+line-height:1.6;
+white-space:pre-line;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+/* animasi hati */
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Hai</h2>
+<p id="text"></p>
+
+<button onclick="thanks()">Terima kasih sudah membaca</button>
+</div>
+
+<script>
+
+var message =
+`Aku ingin meminta maaf atas sikap dan kata-kataku kemarin.
+
+Jika itu membuatmu tidak nyaman,
+aku benar-benar menyesal.
+
+Aku hanya berharap kamu bisa maafin aku.
+
+Terima kasih sudah membaca pesan ini.`;
+
+
+var i = 0;
+
+function typing(){
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i);
+i++;
+setTimeout(typing,35);
+}
+}
+
+typing();
+
+function thanks(){
+document.getElementById("text").innerHTML =
+"Terima kasih sudah meluangkan waktu membaca pesan ini ❤️";
+}
+
+/* membuat hati jatuh */
+
+function createHeart(){
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
